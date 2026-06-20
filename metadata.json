@@ -1,0 +1,6 @@
+{
+  "name": "Plant Growth Simulator",
+  "description": "An interactive biology learning platform and plant growth simulator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
