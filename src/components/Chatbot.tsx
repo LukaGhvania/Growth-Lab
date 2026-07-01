@@ -57,12 +57,18 @@ export function Chatbot() {
   return (
     <>
       {/* Floating Action Button */}
-      <button 
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-secondary text-on-secondary rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform z-50"
-      >
-        <MessageSquare size={24} />
-      </button>
+      {!isOpen && (
+        <button 
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-50 group"
+        >
+          <MessageSquare size={24} />
+          <span className="absolute -top-1 -right-1 flex h-4 w-4">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-4 w-4 bg-error border-2 border-surface"></span>
+          </span>
+        </button>
+      )}
 
       {/* Chat Window */}
       {isOpen && (
@@ -87,7 +93,9 @@ export function Chatbot() {
                 </div>
                 <div className={`p-3 rounded-2xl max-w-[75%] text-sm ${m.role === 'user' ? 'bg-secondary text-on-secondary rounded-tr-none' : 'bg-surface-container text-on-surface rounded-tl-none'}`}>
                    {m.role === 'model' ? (
-                     <ReactMarkdown className="prose prose-sm prose-p:my-1 prose-ul:my-1 text-inherit">{m.text}</ReactMarkdown>
+                     <div className="prose prose-sm prose-p:my-1 prose-ul:my-1 text-inherit">
+                       <ReactMarkdown>{m.text}</ReactMarkdown>
+                     </div>
                    ) : (
                      m.text
                    )}
