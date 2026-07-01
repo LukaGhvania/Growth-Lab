@@ -5,6 +5,7 @@ import { Auth } from './views/Auth';
 import { Home } from './views/Home';
 import { Simulation } from './views/Simulation';
 import { Learning } from './views/Learning';
+import { Article } from './views/Article';
 import { Quizzes } from './views/Quizzes';
 import { Profile } from './views/Profile';
 import { Teacher } from './views/Teacher';
@@ -40,6 +41,7 @@ export default function App() {
       case 'home': return <Home />;
       case 'simulation': return <Simulation />;
       case 'learning': return <Learning />;
+      case 'article': return <Article />;
       case 'quizzes': return <Quizzes />;
       case 'profile': return <Profile />;
       case 'teacher': return <Teacher />;
@@ -64,7 +66,7 @@ export default function App() {
              <h2 className="text-xl font-display font-bold text-primary hidden sm:block">
                {activeView === 'home' ? 'Plant Growth Simulator' : 
                 activeView === 'simulation' ? 'სიმულაცია' :
-                activeView === 'learning' ? 'სასწავლო ცენტრი' :
+                (activeView === 'learning' || activeView === 'article') ? 'სასწავლო ცენტრი' :
                 activeView === 'quizzes' ? 'ქვიზები' :
                 activeView === 'profile' ? 'პროფილი' : 'მასწავლებლის პანელი'}
              </h2>

@@ -1,7 +1,10 @@
 import React from 'react';
 import { Play } from 'lucide-react';
+import { useStore } from '../store';
 
 export function Learning() {
+  const { setActiveView } = useStore();
+
   const modules = [
     {
       id: 1,
@@ -46,7 +49,10 @@ export function Learning() {
           <p className="text-on-surface-variant mb-8 leading-relaxed">
              ჩაიძირეთ ფოთლის მიკროსკოპულ სამყაროში. იმოქმედეთ სტომატებთან, ქლოროპლასტებთან და უყურეთ ენერგიის გარდაქმნის ჯადოსნურ პროცესს.
           </p>
-          <button className="bg-primary-container text-on-primary rounded-xl px-6 py-3 font-semibold w-max hover:bg-primary transition-colors duration-200 shadow-sm flex items-center gap-2">
+          <button 
+            onClick={() => setActiveView('simulation')}
+            className="bg-primary-container text-on-primary rounded-xl px-6 py-3 font-semibold w-max hover:bg-primary transition-colors duration-200 shadow-sm flex items-center gap-2"
+          >
             დაწყება
             <Play size={16} />
           </button>
@@ -71,7 +77,11 @@ export function Learning() {
         <h3 className="text-2xl font-display font-bold text-on-surface mb-6">ძირითადი საგნები</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {modules.map(mod => (
-            <div key={mod.id} className="bg-surface-container-lowest rounded-2xl border border-outline-variant soft-bloom overflow-hidden flex flex-col group hover:border-primary transition-colors duration-300 cursor-pointer">
+            <div 
+              key={mod.id} 
+              onClick={() => setActiveView('article')}
+              className="bg-surface-container-lowest rounded-2xl border border-outline-variant soft-bloom overflow-hidden flex flex-col group hover:border-primary transition-colors duration-300 cursor-pointer"
+            >
                <div className="h-40 bg-surface-container-high relative flex items-center justify-center">
                  <span className="material-symbols-outlined text-[64px] text-primary opacity-20 group-hover:scale-110 transition-transform duration-500" style={{ fontVariationSettings: "'FILL' 1" }}>
                     {mod.icon}
@@ -88,7 +98,9 @@ export function Learning() {
                  <div className="w-full h-1.5 bg-surface-container rounded-full mb-4 overflow-hidden">
                     <div className="h-full bg-primary-container rounded-full" style={{ width: `${mod.progress}%` }}></div>
                  </div>
-                 <button className={`w-full font-semibold rounded-xl py-2.5 transition-colors ${mod.progress > 0 ? 'border-2 border-secondary text-secondary hover:bg-secondary-fixed' : 'bg-surface-container-high text-on-surface hover:bg-surface-variant'}`}>
+                 <button 
+                   className={`w-full font-semibold rounded-xl py-2.5 transition-colors ${mod.progress > 0 ? 'border-2 border-secondary text-secondary hover:bg-secondary-fixed' : 'bg-surface-container-high text-on-surface hover:bg-surface-variant'}`}
+                 >
                     {mod.progress > 0 ? 'გაგრძელება' : 'დაწყება'}
                  </button>
                </div>
@@ -96,6 +108,65 @@ export function Learning() {
           ))}
         </div>
       </div>
+
+      {/* Biology Information Overview */}
+      <section className="bg-surface-container-lowest rounded-3xl p-8 md:p-12 border border-outline-variant soft-bloom mt-12">
+        <h3 className="text-3xl font-display font-bold text-on-surface mb-6">ბიოლოგიის მიმოხილვა</h3>
+        
+        <div className="space-y-8">
+          <div>
+            <h4 className="text-xl font-bold text-primary mb-3 flex items-center gap-2">
+               <span className="material-symbols-outlined">menu_book</span>
+               რა არის ბიოლოგია?
+            </h4>
+            <p className="text-on-surface-variant leading-relaxed">
+              ბიოლოგია არის მეცნიერება სიცოცხლისა და ცოცხალი ორგანიზმების შესახებ. იგი შეისწავლის მათ სტრუქტურას, ფუნქციებს, ზრდას, წარმოშობას, ევოლუციასა და გავრცელებას. მცენარეები (Plantae) ამ რთული ქსელის უმნიშვნელოვანესი ნაწილია, რადგან ისინი უზრუნველყოფენ ჟანგბადის გამომუშავებასა და ეკოსისტემის სტაბილურობას.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-surface-container-low p-6 rounded-2xl">
+              <div className="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-4">
+                <span className="material-symbols-outlined text-[24px]">sunny</span>
+              </div>
+              <h4 className="text-lg font-bold text-on-surface mb-2">ფოტოსინთეზი</h4>
+              <p className="text-sm text-on-surface-variant leading-relaxed">
+                პროცესი, რომლის დროსაც მცენარეები მზის ენერგიას იყენებენ ნახშირორჟანგისა და წყლისგან გლუკოზის სინთეზისთვის. ეს პროცესი მიმდინარეობს ქლოროპლასტებში და მისი თანამდევი პროდუქტია ჟანგბადი.
+              </p>
+            </div>
+
+            <div className="bg-surface-container-low p-6 rounded-2xl">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                <span className="material-symbols-outlined text-[24px]">psychiatry</span>
+              </div>
+              <h4 className="text-lg font-bold text-on-surface mb-2">სასიცოცხლო ციკლი</h4>
+              <p className="text-sm text-on-surface-variant leading-relaxed">
+                მცენარის სიცოცხლე იწყება თესლით და სრულდება ახალი თესლის წარმოქმნით. ეს ეტაპები მოიცავს: აღმოცენებას, ვეგეტაციურ ზრდას, ყვავილობას და ნაყოფმსხმოიარობას.
+              </p>
+            </div>
+
+            <div className="bg-surface-container-low p-6 rounded-2xl">
+              <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                <span className="material-symbols-outlined text-[24px]">account_tree</span>
+              </div>
+              <h4 className="text-lg font-bold text-on-surface mb-2">მცენარეთა ანატომია</h4>
+              <p className="text-sm text-on-surface-variant leading-relaxed">
+                მცენარე შედგება რამდენიმე ძირითადი ორგანოსგან: ფესვი (წყლისა და მინერალების შეწოვა), ღერო (საყრდენი და გამტარი), ფოთოლი (ფოტოსინთეზი) და ყვავილი (გამრავლება).
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-6 flex justify-end">
+            <button 
+              onClick={() => setActiveView('article')}
+              className="text-primary font-bold hover:underline flex items-center gap-1"
+            >
+              ვრცლად წაკითხვა
+              <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

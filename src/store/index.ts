@@ -19,8 +19,8 @@ interface RootState {
   awardBadge: (badgeId: string) => void;
 
   // App State
-  activeView: 'home' | 'simulation' | 'learning' | 'quizzes' | 'profile' | 'teacher';
-  setActiveView: (view: 'home' | 'simulation' | 'learning' | 'quizzes' | 'profile' | 'teacher') => void;
+  activeView: 'home' | 'simulation' | 'learning' | 'quizzes' | 'profile' | 'teacher' | 'article';
+  setActiveView: (view: 'home' | 'simulation' | 'learning' | 'quizzes' | 'profile' | 'teacher' | 'article') => void;
 
   isAuthenticated: boolean;
   login: (name: string, role: 'student' | 'teacher') => void;
